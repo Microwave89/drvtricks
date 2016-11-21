@@ -1,7 +1,12 @@
 # drvtricks
 drvtricks kernel driver for Windows 7 SP1 and 8.1 x64, that tricks around in your system.
 
+- What is this?
 
+It is a small Windows kernel driver that serves as a non-malicious Proof of Concept (PoC) for demo purposes on the subject of rootkit techniques.
+Normally, rootkits are used by attackers in order to conceal both various malware as well as its activity. In this example the payload consists of a local keylogger which stores key presses into an NTFS special file hidden by Windows itself.
+
+- Oh...ok, now show me the source!
 
 ===== IMPORTANT INFORMATION REGARDING THE SOURCE CODE COMMENTS =====
 
@@ -29,12 +34,6 @@ payload.c --> attempts to open or creates keylogger log file
           --> upon key press the completion routine runs and repatches the keyboard and extracts the key press from IRP
           --> in a workerthread the key press is written into the keylogger log file
 
-
-
-- What is this?
-
-It is a small Windows kernel driver that serves as a non-malicious Proof of Concept (PoC) for demo purposes on the subject of rootkit techniques.
-Normally, rootkits are used by attackers in order to conceal both various malware as well as its activity. In this example the payload consists of a local keylogger which stores key presses into an NTFS special file hidden by Windows itself.
 
 
 - What makes it special against existing PoCs?
