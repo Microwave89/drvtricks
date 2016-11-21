@@ -5,13 +5,18 @@ drvtricks kernel driver for Windows 7 SP1 and 8.1 x64, that tricks around in you
 
 
 - What is this?
+
 It is a small Windows kernel driver that serves as a non-malicious Proof of Concept (PoC) for demo purposes on the subject of rootkit techniques.
 Normally, rootkits are used by attackers in order to conceal both various malware as well as its activity. In this example the payload consists of a local keylogger which stores key presses into an NTFS special file hidden by Windows itself.
 
+
 - What makes it special against existing PoCs?
+
 The same way a classic 32 bits rootkit does WITH hooking my rootkit attempts to conceal the vast majority of its existence WITHOUT hooking. Note that with Kernel Patch Protection no persistent hooks are permitted. Furthermore, it aims to exhibiting strong persistence.
 
+
 - What functions does it have?
+
 ==> Passive concealment of: its driver file, the keylogger file, its driver image, its system threads,
     its own (service) registry key, and its IRP hook. Driver file and keylogger file are hidden by leveraging
     undocumented directory C:\$Extend\$RmMetadata passively hidden by ntfs.sys. Service key is hidden by exploiting
