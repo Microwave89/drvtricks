@@ -1,0 +1,8 @@
+ntstatus = NtNotifyChangeDirectoryFile(g_pRunTimeInfo->hMonitorDir, g_pRunTimeInfo->hEvent, NULL, NULL, &g_pRunTimeInfo->drvFileIoStatusBlock, &g_pRunTimeInfo->drvFileBuffer, sizeof(FILE_NOTIFY_INFORMATION), FILE_NOTIFY_CHANGE_NAME, FALSE);
+----> ntstatus = NtNotifyChangeDirectoryFile(g_pRunTimeInfo->hMonitorDir, ***NULL***, NULL, NULL, &g_pRunTimeInfo->drvFileIoStatusBlock, &g_pRunTimeInfo->drvFileBuffer, sizeof(FILE_NOTIFY_INFORMATION), FILE_NOTIFY_CHANGE_NAME, FALSE); (event usage removed)
+
+RtlInitUnicodeString(&uLogFile, L"\\??\\Global\\C:\\$Extend\\$RmMetadata\\$KlogFile");
+----> RtlInitUnicodeString(&uLogFile, L"\\??\\C:\\$Extend\\$RmMetadata\\$KlogFile"); (Global path part omitted)
+
+RtlInitUnicodeString(&uKeyToMonitor, L"\\Registry\\Machine\\SYSTEM\\CurrentControlSet\\Control\\Class");
+----> RtlInitUnicodeString(&uKeyToMonitor, L"\\Registry\\Machine\\SYSTEM\\CurrentControlSet\\Control\\Class***\\{4d36e96b-e325-11ce-bfc1-08002be10318}***"); (not all class key but solely keyboard class key gets flushed now)

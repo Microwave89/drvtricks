@@ -1,0 +1,22 @@
+install
+
+do
+	if cmd or explorer{
+		patch kbd
+	}
+
+	wait until !explorer  or !cmd
+	unpatch kbd
+loop
+
+
+boot
+
+do
+	if cmd or explorer or logonui{
+		patch kbd
+	}
+
+	wait until !explorer or !cmd
+	unpatch kbd
+loop

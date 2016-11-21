@@ -1,0 +1,14 @@
+(drvtricks driver has to be renamed into payload.sys for loading by antidse.exe)
+todo:
+make phoenix behavior working(when system ist shut down, install registry entry "setupexecute" for project1.exe):
+
+solve by polling: call exqueueworkitem in driverentry, in workroutine poll for svchost.exe existing, if not, write reg value, or poll for any running services(difficult, services in ring3 mostly)
+
+
+or solve by sync: call exqueueworkitem in drv entry, in workroutine do kewaitforsingleobject on svchost.exe or any windows shutdown event
+
+
+or solve by callback: try to register object callback or set a createprocessnotifyroutine (must set code integrity flag on PE header of drvtricks) and look for process exit of svchost.exe
+
+
+situations not covered: if user presses powerbutton(long).
