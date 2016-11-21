@@ -1,7 +1,27 @@
 # drvtricks
 drvtricks kernel driver for Windows 7 SP1 and 8.1 x64, that tricks around in your system.
 
-===== IMPORTANT WORDS ABOUT THE SOURCE =====
+===== IMPORTANT INFORMATION REGARDING THE SOURCE CODE COMMENTS =====
+The source code appears to be commented but those comments are wrong and misleading. Unfortunately the comments were never adapted when implementing a new concept in the driver allowing for persistance when killing off the machine. Initially the old concept was about removing the driver file upon machine boot, keeping it in system memory during runtime and rewriting it during machine shutdown.
+With the new concept the file is only rewritten at boot time and then kept at disk in undocumented C:\$Extend\$RmMetadata directory. Rewriting serves for randomizing the file name in order to hinder offline analysis by tools such as FRST64 (Farbar Recovery Scan Tool).
+
+===== Information regarding the source code =====
+main.c --> allocates non-pagable kernel memory and sets up global variables such as strings
+       --> allocates readable-writeable-executable memory and copies the driver image in it
+       --> sets up global structures for starting system threads and runs the init thread
+       --> unloads itself
+
+cloak.c --> waits for keyboard device to exist
+        --> makes payload.c patch keyboard driver object (IRP hook on pKbdDrvObj->MajorFunction[IRP_MJ_READ])
+        --> runs callback routines which install various registry and directory callbacks
+        --> removes old driver file and creates file with randomized file name
+
+payload.c --> attempts to open or creates keylogger log file
+          --> checks keyboard patch and if failed then repatches keyboard driver object
+          --> waits for keyboard driver to send an IO Request Packet (IRP) and patches its completion routine pointer
+          --> removes the IRP hook so it cannot be detected by Kernel Patch Protection (PatchGuard) or rootkit scanners
+          --> upon key press the completion routine runs and repatches the keyboard and extracts the key press from IRP
+          --> in a workerthread the key press is written into the keylogger log file
 
 
 - What is this?
