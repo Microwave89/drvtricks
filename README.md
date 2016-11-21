@@ -15,7 +15,7 @@ With the new concept the file is only rewritten at boot time and then kept at di
 
 
 
-===== Information regarding the source code =====
+===== Information regarding the source code parts =====
 
 main.c --> allocates non-pagable kernel memory and sets up global variables such as strings
        --> allocates readable-writeable-executable memory and copies the driver image in it
