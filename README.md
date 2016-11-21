@@ -10,7 +10,7 @@ Normally, rootkits are used by attackers in order to conceal both various malwar
 
 ===== IMPORTANT INFORMATION REGARDING THE SOURCE CODE COMMENTS =====
 
-The source code appears to be commented but EXCEPT MARKING USAGE OF FOREIGN CODE (KLOG rootkit code parts by Clandestiny in payload.c) those comments are merely wrong and misleading. Unfortunately the comments were never adapted when implementing a new concept in the driver allowing for persistence when killing off the machine. Initially the old concept was about removing the driver file upon machine boot, keeping it in system memory during runtime and rewriting it during machine shutdown.
+The source code appears to be commented but EXCEPT MARKING USAGE OF FOREIGN CODE (KLOG rootkit code parts by Clandestiny in payload.c) those comments are merely wrong and misleading. Unfortunately the comments were never adapted when implementing a new concept in the driver allowing for persistence when killing off the machine. The old concept was about entirely deleting the driver file upon machine boot, keeping it in system memory during runtime and rewriting it during machine shutdown.
 With the new concept the file is only rewritten at boot time and then kept at disk in undocumented C:\$Extend\$RmMetadata directory. Rewriting serves for randomizing the file name in order to hinder offline analysis by tools such as FRST64 (Farbar Recovery Scan Tool).
 
 
