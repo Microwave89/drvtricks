@@ -1,0 +1,26 @@
+Drvtriks reloaded installer:
+
+- On launch seem legit and display gui (pose as driverloader? =D )
+
+- Write dll and service registry, and testsigning entries
+
+- Copy appcertdll to system32/wbem, use space at end
+
+- Make wchar 0 in appcertdlls value name
+
+- After gui exit remove gui and stay alive (attempt running copied dll with ntcreateuserprocess?)
+
+- after timeout do ntshutdownsystem
+
+- In appcertdlls dll load driver exactly once
+
+- If exists, driver should remove ntbtlog.txt!! (Better, find what boot entry makes windows create bootlog!)
+
+- Appcertdlls, what about minimal safemode? (Alternatives to load admin-rights usermode code then?)
+
+- Temporarily patch ntquerysysteminformation (patch for usermode-scantools) Codeintegrity info class, find which call in which process allows explorer.exe to show watermark, find what makes frst64 find testsigning info, let driver alter (no hooking!) systemstartoptions key value)
+
+- The usual things such as driver recreates everything if missing/altered by means of notification routines
+That is both files, all startup entries, testsigning entry
+
+- Represent everything in both um/km with classes and class connections --> work towards refactoring into patterns!
