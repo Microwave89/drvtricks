@@ -23,4 +23,4 @@ Drvtriks reloaded installer:
 - The usual things such as driver recreates everything if missing/altered by means of notification routines
 That is both files, all startup entries, testsigning entry
 
-- Represent everything in both um/km with classes and class connections --> work towards refactoring into patterns!
+- Represent everything in both um/km with classes and class relations --> then work towards refactoring into patterns!
