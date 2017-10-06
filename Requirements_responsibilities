@@ -1,0 +1,27 @@
+Drvtricks Reloaded - Requirements and Task Assignment
+(Optimized for persistence across reboot)
+
+Installer:
+- Not persistent
+- testsigning entries
+- "Unpacking" appcertdll
+- "Unpacking" driver
+- Appcertdll installation
+- Ntshutdownsystem
+
+Loader:
+- Execution temporary
+- Image must be persistent because it loads driver
+- Loader itself does not ensure persistence due to temporary execution
+- Registry entry is persistent because loader is first code of drvtricks reloaded project to be run
+- Must not contain driver to avoid impossible containment circle (driver contains appcertdll contains driver --> ???)
+- Contains code to install and load driver
+
+Driver:
+- Execution persistent
+- Image is itself persistent because execution is permanent
+- Must be able to recreate both itself and appcertdll at any time
+- Contains code to ensure "integrity" of testsigning entries and appcertdll entry
+- Obtain and prepare nonpagedpoolexecute memory for callbacks and irp dispatch
+- Attach to mouse and keyboard device stack
+- Install callback routines for testsigning and appcertdlls entry
