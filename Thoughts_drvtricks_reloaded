@@ -21,6 +21,6 @@ Drvtriks reloaded installer:
 - Temporarily patch ntquerysysteminformation (patch for usermode-scantools) Codeintegrity info class, find which call in which process allows explorer.exe to show watermark, find what makes frst64 find testsigning info, let driver alter (no hooking!) systemstartoptions key value)
 
 - The usual things such as driver recreates everything if missing/altered by means of notification routines
-That is both files, all startup entries, testsigning entry
+That is both files, all startup entries, testsigning entry, but no need to have driver service entry be persistent across reboots!
 
 - Represent everything in both um/km with classes and class relations --> then work towards refactoring into patterns!
